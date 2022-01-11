@@ -21,16 +21,17 @@ public class projectController {
     
     @RequestMapping("/input")
     public String getData(HttpServletRequest data, Model discountprocess){
+       
+        String inputname = data.getParameter("nama_barang");
         
-        String inputname = data.getParameter("var_name");
+        String inputprice = data.getParameter("harga_barang");
         
-        String inputprice = data.getParameter("var_price");
+        String inputquantity = data.getParameter("jumlah_beli");
         
-        String inputquantity = data.getParameter("var_quantity");
-        
-        String inputUang = data.getParameter("var_uang");
+        String inputUang = data.getParameter("uang");
         
         String diskon = "";
+        Double Tdisc = null;
         
         Double iUang = Double.valueOf(inputUang);
         Double iPrice = Double.valueOf(inputprice);
@@ -42,27 +43,47 @@ public class projectController {
         {
             getTotal = PriceTotal - (0 * PriceTotal/100);
             diskon = "0%";
+            Tdisc = 0 * PriceTotal/100;
         }
         else if (PriceTotal >= 16000 && PriceTotal < 25000)
         {
             getTotal = PriceTotal - (10 * PriceTotal/100);
             diskon = "10%";
+            Tdisc = 10 * PriceTotal/100;
         }
         else if (PriceTotal >= 25000)
         {
             getTotal = PriceTotal - (15 * PriceTotal/100);
             diskon = "15%";
+            Tdisc = 15 * PriceTotal/100;
         }
         
+        String Ket = "";
         Double kembalian = iUang - getTotal;
+        Double kekurangan = getTotal - iUang;
         
+        if (getTotal < iUang)
+        {
+            Ket = "Kembalian anda Rp. " + kembalian;
+        }
+        else if (getTotal > iUang)
+        {
+            Ket = "Uang anda kurang Rp." + kekurangan;
+        }
+        else 
+        {
+            Ket = "Uang anda pas";
+        }
+                
         discountprocess.addAttribute("name", inputname);
         discountprocess.addAttribute("price", inputprice);
         discountprocess.addAttribute("quantity", inputquantity);
         discountprocess.addAttribute("total", getTotal);
         discountprocess.addAttribute("dc", diskon);
         discountprocess.addAttribute("duit", inputUang);
-        discountprocess.addAttribute("kmb", kembalian);
+        discountprocess.addAttribute("Ket", Ket);
+        discountprocess.addAttribute("HargaAwal", PriceTotal);
+        discountprocess.addAttribute("HargaDiskon", Tdisc);
         
         return "View";
     }    

@@ -17,27 +17,49 @@ and open the template in the editor.
             <tr>
                 <td>Nama barang</td>
                 <td><b th:text="${name}"></b></td>
-                
+            </tr>
+            
+            <tr>
                 <td>Harga perkilo</td>
                 <td><b th:text="${price}"></b></td>
-                
+            </tr>
+            
+            <tr>
                 <td>Jumlah dibeli</td>
                 <td><b th:text="${quantity}"></b></td>
-             
-                <td>Total Harga Diskon (Rp)</td>
-                <td><b th:text="${dc}"></b></td>
+            </tr>
+            
+                <tr>
+                <td>Harga Awal</td>
+                <td><b th:text="${HargaAwal}"></b></td>
+            </tr>
+            
+            <tr>
+                <td>Jumlah Diskon</td>
+               <td><b th:text="${dc}"></b></td> 
+            </tr>
+            
+            <tr>
+               <td>Total Harga Diskon (Rp)</td>
+               <td><b th:text="${HargaDiskon}"></b></td> 
+            </tr>
                 
-                <td>Total Bayar untuk dibayar</td>
-                <td><b th:text="${total}"></b></td>
+            <tr>
+               <td>Total Bayar untuk dibayar</td>
+                <td><b th:text="${total}"></b></td> 
+            </tr>  
                 
+            <tr>
                 <td>Uang yang dibayarkan</td>
                 <td><b th:text="${duit}"></b></td>
-                
-                <td>Uang kembalian</td>
-                <td><b th:text="${kmb}"></b></td>
-                
-                
             </tr>
+                
+            <tr>
+                <td>Keterangan</td>
+                <td><b th:text="${Ket}"></b></td>
+            </tr>
+                 
+         
             </table>
     </body>
 </html>
